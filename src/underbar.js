@@ -309,7 +309,7 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
-    var outerArgs = [];
+    var called = [];
 
     function arraysAreEqual(array1, array2) {
       if (array1.length !== array2.length) {
@@ -327,14 +327,18 @@
     }
 
     return function() {
-      var innerArgs = Array.prototype.slice.call(arguments, 0);
-      console.log(innerArgs);
-      if (!arraysAreEqual(innerArgs, outerArgs)) {
-          outerArgs = innerArgs;
-          return func.apply(this, arguments);
-      }       
+      var currentArgs = Array.prototype.slice.call(arguments, 0);
+      
+      for (var i = 0; i <= called.length; i++) {
+        var funcObj = called[i];
+        if (funcObj && arraysAreEqual(funcObj.args, currentArgs)) {
+          return funcObj.result;
+        }
+        var currentFunc = func.apply(this, arguments);
+        called.push({ args: currentArgs, result: currentFunc });
+        return currentFunc;
+      }
     }
-
   };
 
   // Delays a function for the given number of milliseconds, and then calls
