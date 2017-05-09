@@ -391,10 +391,19 @@
   	var result = [];
   	for (var i = 0; i < collection.length; i++) {
   	  if (typeof functionOrKey === 'function') {
-  		result.push(functionOrKey.call(collection[i]));
+  		  result.push(functionOrKey.call(collection[i]));
       }
       else {
-      	result.push(collection[i][functionOrKey]);
+
+        //var someMethod = collection[i][functionOrKey];
+        //result.push(someMethod());
+        //calling as a function- doesn't work,
+        //console.log('this = ', this, 'instead of ', collection[i])
+        
+
+        //calling as a method works
+      	result.push(collection[i][functionOrKey]());
+        console.log('this = ', collection[i])
       }
   	}
   	return result;
