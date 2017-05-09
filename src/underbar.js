@@ -350,7 +350,7 @@
   _.delay = function(func, wait) { 
     var args = Array.prototype.slice.call(arguments, 2);
     setTimeout(function() {
-      func.apply(this, args);
+      func.apply(null, args);
     }, wait);
   };
 
@@ -388,6 +388,16 @@
   // Calls the method named by functionOrKey on each value in the list.
   // Note: You will need to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
+  	var result = [];
+  	for (var i = 0; i < collection.length; i++) {
+  	  if (typeof functionOrKey === 'function') {
+  		result.push(functionOrKey.call(collection[i]));
+      }
+      else {
+      	result.push(collection[i][functionOrKey]);
+      }
+  	}
+  	return result;
   };
 
   // Sort the object's values by a criterion produced by an iterator.
