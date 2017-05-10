@@ -412,10 +412,14 @@
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
-  	//instantiate variable sorted = false
   	var unsorted = true;
+  	var swapElements = function(array, index) {
+      var temp = array[index];
+      array[index] = array[index + 1];
+      array[index + 1] = temp;
+  	}
+
   	while (unsorted) {
-  	//iterate over collection
   	  unsorted = false;
 	  for (var i = 0; i < collection.length - 1; i++) {
 	  	if (collection[i] === undefined) {
@@ -425,16 +429,12 @@
 	  	if (typeof iterator === 'function') {
 	  	  if (iterator(collection[i]) > iterator(collection[i + 1])) {
 	  	  	unsorted = true;
-	  	    var temp = collection[i];
-	  	    collection[i] = collection[i + 1];
-	  	    collection[i + 1] = temp;
+	  	    swapElements(collection, i);
 	  	   }
 	  	} else {
 	  	  if (collection[i][iterator] > collection[i + 1][iterator]) {
 	  	  	unsorted = true;
-	  	    var temp = collection[i];
-	  	    collection[i] = collection[i + 1];
-	  	    collection[i + 1] = temp;
+	  	    swapElements(collection, i)
 	  	  }
 	  	}
 	  }
@@ -448,6 +448,9 @@
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+  	//instantiate empty array
+  	//get arguments length
+  	//get longest array out of all arguments
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
