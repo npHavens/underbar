@@ -391,17 +391,14 @@
   	var result = [];
   	for (var i = 0; i < collection.length; i++) {
   	  if (typeof functionOrKey === 'function') {
-  		  result.push(functionOrKey.call(collection[i], args));
         //explicit this binding
-        console.log(this)
+  		result.push(functionOrKey.call(collection[i], args));
       } else {
-
         //var someMethod = collection[i][functionOrKey];
         //result.push(someMethod());
         //calling as a function doesn't work,
         //console.log('this = ', this, 'instead of ', collection[i])
         
-
         //calling as a method works
       	result.push(collection[i][functionOrKey]());
         //console.log('this = ', collection[i])
@@ -415,6 +412,13 @@
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
+  	//instantiate variable sorted = false
+  	//while sorted = false
+  	//iterate over collection
+  	  //if iterator is a function
+  	    //if iterator(next element) is greater than iterator(element), swap elements
+  	  //else if next element[iterator] is greater than element[iterator], swap elements
+  	//sorted = true;
   };
 
   // Zip together two or more arrays with elements of the same index
