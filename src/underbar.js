@@ -413,12 +413,33 @@
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
   	//instantiate variable sorted = false
-  	//while sorted = false
+  	var unsorted = true;
+  	while (unsorted) {
   	//iterate over collection
-  	  //if iterator is a function
-  	    //if iterator(next element) is greater than iterator(element), swap elements
-  	  //else if next element[iterator] is greater than element[iterator], swap elements
-  	//sorted = true;
+  	  unsorted = false;
+	  for (var i = 0; i < collection.length - 1; i++) {
+	  	if (collection[i] === undefined) {
+	  	  var val = collection.splice(i, 1);
+	  	  collection.push(val[0]);
+	  	}  
+	  	if (typeof iterator === 'function') {
+	  	  if (iterator(collection[i]) > iterator(collection[i + 1])) {
+	  	  	unsorted = true;
+	  	    var temp = collection[i];
+	  	    collection[i] = collection[i + 1];
+	  	    collection[i + 1] = temp;
+	  	   }
+	  	} else {
+	  	  if (collection[i][iterator] > collection[i + 1][iterator]) {
+	  	  	unsorted = true;
+	  	    var temp = collection[i];
+	  	    collection[i] = collection[i + 1];
+	  	    collection[i + 1] = temp;
+	  	  }
+	  	}
+	  }
+    }
+    return collection;
   };
 
   // Zip together two or more arrays with elements of the same index
