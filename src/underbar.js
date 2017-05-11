@@ -501,15 +501,15 @@
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
-  	//instantiate empty array result;
-  	//convert arguments to array and slice after first 
-  	//iterate over array
-  	  //iterate over args
-  	    //if element is not present in any of arguments, push to result
-  	//return result
+  	var result = [];
+  	var args = Array.prototype.slice.call(arguments, 1);
 
-
-
+  	  for (var i = 0; i < array.length; i++) {
+  	    if (_.every(args, function(element) { return !_.contains(element, array[i]); })) {    
+  	      result.push(array[i]);
+  	    }
+  	  }
+  	return result;
   };
 
   // Returns a function, that, when invoked, will only be triggered at most once
