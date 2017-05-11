@@ -451,7 +451,7 @@
   	var args = _.sortBy(Array.prototype.slice.call(arguments), 'length');
   	var longest = args[args.length - 1];
   	var zipped = [];
-  	
+
     for (var i = 0; i < longest.length; i++) {
       var group = [];
       for (var j = 0; j < arguments.length; j++) {
@@ -459,7 +459,7 @@
       }
       zipped.push(group);
     } 
-    return zipped;	
+    return zipped;
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
@@ -467,6 +467,11 @@
   //
   // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
+  	//if result is undefined, result = [];
+  	//iterate over nestedArray
+  	  //Base Case: if element is not array, push element to result
+  	  //else,  _.flatten(element, result)
+  	//return result
   };
 
   // Takes an arbitrary number of arrays and produces an array that contains
