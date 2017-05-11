@@ -485,7 +485,7 @@
   _.intersection = function() {
   	var result = [];
   	var args = Array.prototype.slice.call(arguments);
-  	
+
   	for (var i = 0; i < args.length; i++) {
   	  for (var j = 0; j < args[i].length; j++) {
   	    if (_.every(args, function(array) { return _.contains(array, args[i][j]); })) {
@@ -495,12 +495,21 @@
   	    }
   	  }
   	}
-  	return result
+  	return result;
   };
 
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
+  	//instantiate empty array result;
+  	//convert arguments to array and slice after first 
+  	//iterate over array
+  	  //iterate over args
+  	    //if element is not present in any of arguments, push to result
+  	//return result
+
+
+
   };
 
   // Returns a function, that, when invoked, will only be triggered at most once
