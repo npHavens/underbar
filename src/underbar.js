@@ -525,9 +525,14 @@
   	return function() {
   	  currentTime = new Date();  		  	  	
   	  if (!time || currentTime - time > wait) {
-        func();
+        result = func.call(arguments);
         time = currentTime;
-  	  }    
+  	  } else {
+  	    return setTimeout(function() {
+          result = func.call(arguments);
+  	    }, wait - currentTime - time) 
+  	  }
+  	  return result;   
   	}
   };
 
