@@ -392,7 +392,7 @@
   	for (var i = 0; i < collection.length; i++) {
   	  if (typeof functionOrKey === 'function') {
         //explicit this binding
-  		result.push(functionOrKey.call(collection[i], args));
+  		result.push(functionOrKey.apply(collection[i], args));
       } else {
         //var someMethod = collection[i][functionOrKey];
         //result.push(someMethod());
@@ -518,5 +518,17 @@
   //
   // Note: This is difficult! It may take a while to implement.
   _.throttle = function(func, wait) {
+  	var time;
+  	var currentTime;
+  	var result;
+
+  	return function() {
+  	  currentTime = new Date();  		  	  	
+  	  if (!time || currentTime - time > wait) {
+        func();
+        time = currentTime;
+  	  }    
+  	}
   };
+
 }());
